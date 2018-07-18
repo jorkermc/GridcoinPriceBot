@@ -1,12 +1,19 @@
+import datetime
+import functools
+import logging
+
 import discord
 from discord.ext import commands
-
-import datetime
 
 
 class DiscordPlugin:
     def __init__(self, bot):
         self.bot = bot
+        self._logger = logging.getLogger(self.__class__.__name__)
+        self.log_critical, self.log_error, self.log_warning, self.log_info, self.log_debug, _ = [functools.partial(self.log, lvl=x) for x in reversed(range(0, 51, 10))]
+        
+    def log(self, msg, lvl, *args, **kwargs):
+        self._logger.log(lvl, msg, *args, **kwargs)
 
     async def ainit(self):
         pass

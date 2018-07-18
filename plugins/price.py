@@ -21,6 +21,9 @@ class Price(dapp.DiscordPlugin):
             except KeyError:
                 pass
 
+    def __unload(self):
+        self.bot.loop.run_until_complete(self.sc.close())
+
     async def get_map(self):
         async with self.sc.get(API_ENDPOINT + MAP_ENDPOINT) as res:
             return await res.json()
@@ -34,6 +37,7 @@ class Price(dapp.DiscordPlugin):
         c = await self.get_coin(self.tickers.get(coin.lower(), coin.upper()))
         u = '/'.join([API_ENDPOINT, self.tickers.get(coin.lower(), coin.upper())])
         if not c:
+            self.log_warning("Couldn't find currency: {}".format(coin))
             return await ctx.message.add_reaction('\u274C')
         c = c['data']
         e = dapp.Embed(title="{} ({})".format(c['display_name'], c['id']), colour=self.bot.default_colour, url=u)

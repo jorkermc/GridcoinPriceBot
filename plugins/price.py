@@ -58,7 +58,10 @@ class Price(dapp.DiscordPlugin):
         data.append(' '.join(["Total Supply:", str(c['supply']), c['id']]))
         data.append(' '.join(["24HR Trading Volume:", str(c['volume']), "USD"]))
         data.append(' '.join(["Cap Change:", "{0:+02.2f}".format(c['cap24hrChange']) + '%']))
-        data.append(' '.join(["24H VWAP:", '{:.8f}'.format(round(c['vwap_h24'], 8)), "USD"]))
+        try:
+            data.append(' '.join(["24H VWAP:", '{:.8f}'.format(round(c['vwap_h24'], 8)), "USD"]))
+        except KeyError:
+            pass
         e.add_field(name="Price", value='\n'.join(price), inline=True)
         e.add_field(name="Data", value='\n'.join(data), inline=True)
         e.add_field(name="General", value='\n'.join(general))

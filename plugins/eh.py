@@ -15,6 +15,8 @@ class CommandErrorHandler(dapp.DiscordPlugin):
                 await owner.create_dm()
             await owner.dm_channel.send(f'User {ctx.author} tried to execute owner command "{ctx.command.name}"')
             await owner.dm_channel.send(f'in channel {ctx.channel.name} in guild {ctx.guild.name}')
+        else:
+            print(f'{error.__class__.name}: {error}')
 
 
 def setup(bot):

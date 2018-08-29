@@ -8,9 +8,6 @@ import traceback
 
 from contextlib import redirect_stdout
 
-with open('help.md') as f:
-    help_text = f.read()
-
 
 class Meta(dapp.DiscordPlugin):
 
@@ -49,7 +46,18 @@ class Meta(dapp.DiscordPlugin):
 
     @dapp.command()
     async def help(self, ctx):
-        await self.bot.send(help_text, ctx)
+        e = dapp.Embed(colour=self.bot.default_colour)
+        e.set_footer(text="Made by jorkermc#3727")
+        commands = [('help', 'Shows help about a command or the bot.'),
+                    ('source', 'Links you to the source code of the bot.'),
+                    ('uptime', 'Shows how long the bot has been up.'),
+                    ('ping', 'Calculates the ping between the bot and the discord servers.'),
+                    ('price', 'Returns the price and a little more data for a cryptocurrency'),
+                    ('usd', 'Returns the price of a cryptocurrency in USD'),
+                    ('eur', 'Returns the price of a cryptocurrency in EUR')]
+        for command in commands:
+            e.add_field(name=command[0], value=command[1])
+        await ctx.send(embed=e)
 
     @dapp.command(name='eval')
     @dapp.is_owner()

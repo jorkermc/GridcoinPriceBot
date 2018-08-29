@@ -39,7 +39,6 @@ class Price(dapp.DiscordPlugin):
         if not c:
             self.log_warning("Couldn't find currency: {}".format(coin))
             return await ctx.message.add_reaction('\u274C')
-        c = c['data']
         e = dapp.Embed(title="{} ({})".format(c['display_name'], c['id']), colour=self.bot.default_colour, url=u)
         price = []
         data = []

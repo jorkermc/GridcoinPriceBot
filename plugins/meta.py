@@ -46,8 +46,8 @@ class Meta(dapp.DiscordPlugin):
 
     @dapp.command()
     async def help(self, ctx):
-        e = dapp.Embed(colour=self.bot.default_colour)
-        e.set_footer(text="Made by jorkermc#3727")
+        e = dapp.Embed(colour=self.bot.default_colour, title='GridcoinPriceBot')
+        e.set_footer(text="Made by jorkermc#3727", icon_url='https://cdn.discordapp.com/attachments/381963689470984203/452757349657083904/jorkermc.png')
         commands = [('help', 'Shows help about a command or the bot.'),
                     ('source', 'Links you to the source code of the bot.'),
                     ('uptime', 'Shows how long the bot has been up.'),

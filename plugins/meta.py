@@ -53,8 +53,8 @@ class Meta(dapp.DiscordPlugin):
                     ('uptime', 'Shows how long the bot has been up.'),
                     ('ping', 'Calculates the ping between the bot and the discord servers.'),
                     ('price', 'Returns the price and a little more data for a cryptocurrency'),
-                    ('usd', 'Returns the price of a cryptocurrency in USD'),
-                    ('eur', 'Returns the price of a cryptocurrency in EUR')]
+                    ('markets', 'Returns the markets for a cryptocurrrency.'),
+                    ('usd', 'Returns the price of a cryptocurrency in USD')]
         for command in commands:
             e.add_field(name=command[0], value=command[1])
         await ctx.send(embed=e)
